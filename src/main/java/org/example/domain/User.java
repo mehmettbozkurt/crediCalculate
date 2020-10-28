@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.example.config.Gender;
 
 @Entity
 @Table(name = "user")
@@ -22,7 +21,7 @@ public class User {
 		
 	}
 
-	public User(String name, String identity) {
+	public User(String name, Long identity) {
 
 		this.setName(name);
 		this.setIdentity(identity);
@@ -37,19 +36,19 @@ public class User {
 	private String name;
 
 	@Column(name = "identity")
-	private String identity;
+	private Long identity;
 
 	@Column(name = "phone")
 	private String phone;
 
 	@Column(name = "income")
-	private String income;
+	private Long income;
 
-	@Column(name = "credit_score")
-	private String creditScore;
+	@Column(name = "creditscore")
+	private Long creditscore;
 
 	@Column(name = "status")
-	private String status;
+	private Boolean status;
 
 	public Long getId() {
 		return id;
@@ -67,11 +66,11 @@ public class User {
 		this.name = name;
 	}
 
-	public String getIdentity() {
+	public Long getIdentity() {
 		return identity;
 	}
 
-	public void setIdentity(String identity) {
+	public void setIdentity(Long identity) {
 		this.identity = identity;
 	}
 
@@ -83,27 +82,27 @@ public class User {
 		this.phone = phone;
 	}
 
-	public String getIncome() {
+	public Long getIncome() {
 		return income;
 	}
 
-	public void setIncome(String income) {
+	public void setIncome(Long income) {
 		this.income = income;
 	}
 
-	public String getCreditScore() {
-		return creditScore;
+	public Long getCreditscore() {
+		return creditscore;
 	}
 
-	public void setCreditScore(String creditScore) {
-		this.creditScore = creditScore;
+	public void setCreditscore(Long creditscore) {
+		this.creditscore = creditscore;
 	}
 
-	public String getStatus() {
+	public Boolean getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Boolean status) {
 		this.status = status;
 	}
 }
