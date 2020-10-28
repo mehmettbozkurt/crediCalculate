@@ -1,6 +1,7 @@
 package org.example.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.example.domain.User;
 import org.example.repository.UserRepository;
@@ -39,7 +40,8 @@ public class UserService {
 	@Transactional(isolation = Isolation.READ_COMMITTED)
 	public String creditCalculate2(User user){
 
-		User response = userRepository.findByIdentityAndIncome(user.getIdentity(), user.getIncome());
+		//User response = userRepository.findByIdentityAndIncome(user.getIdentity(), user.getIncome());
+		User response = userRepository.findByIdentity(user.getIdentity());
 
 		if(response.getCreditscore() < 500){
 			response.setStatus(false);

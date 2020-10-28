@@ -26,11 +26,19 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-
+	@Autowired
+	UserRepository  USER_REPOSITORY ;
 
 	/*@GetMapping(path = "/user/pointCheck/{id}")
 	public String creditCalculate(@PathVariable Long id) {
 		return userService.creditCalculate(id);
+	}*/
+
+	/*@GetMapping("/user/{id}")
+	User getUser(@PathVariable Long id) {
+		User user = USER_REPOSITORY.findById(id)
+				.orElseThrow(() -> new UserNotFoundException(id));
+		return user;
 	}*/
 
 	@GetMapping(path = "/user/test")

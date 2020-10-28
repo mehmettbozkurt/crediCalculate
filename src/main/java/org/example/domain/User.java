@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import org.example.config.Gender;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
@@ -18,36 +20,35 @@ import org.hibernate.annotations.CreationTimestamp;
 public class User {
 
 	public User() {
-		
+
 	}
 
-	public User(String name, Long identity) {
+	public User(String name, String phone, Long identity, Long creditscore, Long income, Boolean status) {
 
 		this.setName(name);
+		this.setPhone(phone);
+		this.setCreditscore(creditscore);
 		this.setIdentity(identity);
+		this.setIncome(income);
+		this.setStatus(status);
 
 	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", unique = true, nullable = false)
 	private Long id;
 
-	@Column(name = "name")
 	private String name;
 
-	@Column(name = "identity")
 	private Long identity;
 
-	@Column(name = "phone")
 	private String phone;
 
-	@Column(name = "income")
 	private Long income;
 
-	@Column(name = "creditscore")
 	private Long creditscore;
 
-	@Column(name = "status")
 	private Boolean status;
 
 	public Long getId() {
