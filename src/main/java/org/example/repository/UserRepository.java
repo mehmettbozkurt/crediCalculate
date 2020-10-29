@@ -23,7 +23,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
 	//Optional<User> findByName(String name);
 
 
-	//List<User> findAll();
+	List<User> findAll();
 
 	//void deleteById(Long id);
 

@@ -4,6 +4,7 @@ package org.example.controller;
 import java.util.List;
 
 import org.example.domain.User;
+import org.example.dto.UserDto;
 import org.example.repository.UserRepository;
 import org.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,15 +42,12 @@ public class UserController {
 		return user;
 	}*/
 
-	@GetMapping(path = "/user/test")
-	public String creditCalculate() {
-		return "Hasan";
-	}
-
-	@PostMapping(path = "/user/pointCheck2")
-	public String creditCalculate(@RequestBody User user) {
+	@PostMapping(path = "/calculate")
+	public User creditCalculate(@RequestBody UserDto user) {
 		return userService.creditCalculate2(user);
 	}
+
+
 
 
 

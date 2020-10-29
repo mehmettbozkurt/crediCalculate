@@ -17,13 +17,13 @@ import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Cloneable{
 
 	public User() {
 
 	}
 
-	public User(String name, String phone, Long identity, Long creditscore, Long income, Boolean status) {
+	public User(String name, String phone, Long identity, Long creditscore, Long income,Long total, Boolean status) {
 
 		this.setName(name);
 		this.setPhone(phone);
@@ -31,6 +31,7 @@ public class User {
 		this.setIdentity(identity);
 		this.setIncome(income);
 		this.setStatus(status);
+		this.setTotal(total);
 
 	}
 
@@ -48,6 +49,8 @@ public class User {
 	private Long income;
 
 	private Long creditscore;
+
+	private Long total;
 
 	private Boolean status;
 
@@ -105,5 +108,13 @@ public class User {
 
 	public void setStatus(Boolean status) {
 		this.status = status;
+	}
+
+	public Long getTotal() {
+		return total;
+	}
+
+	public void setTotal(Long total) {
+		this.total = total;
 	}
 }

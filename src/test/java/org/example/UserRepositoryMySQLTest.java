@@ -4,6 +4,7 @@ package org.example;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.example.config.Gender;
@@ -12,12 +13,18 @@ import org.example.repository.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.transaction.Transactional;
+
 @RunWith(SpringRunner.class)
+@ActiveProfiles("test")
 @DataJpaTest
+@AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
 public class UserRepositoryMySQLTest {
  
     @Autowired
@@ -27,33 +34,10 @@ public class UserRepositoryMySQLTest {
     private UserRepository USER_REPOSITORY;
  
     // write test cases here
- 
-
 
     @Test
-    //@Rollback(false)  // default is true
-    public void whenFindByFirstname_thenReturnUser() {
-        /*// given
-        User user = new User();
-        user.setBirthdate(new Date());
-        user.setFirstname("Lucas");
-        user.setGnder(Gender.M);
-        user.setLastname("Ko");
-        user.setHiredate(new Date());
-        
-        // save 
-        entityManager.persist(user);        
-        entityManager.flush();
-
-        // find
-        Optional<User> found = USER_REPOSITORY.findByFirstname(user.getFirstname());
-     
-        System.out.println("user id="+found.get().getId());
-     
-        // then
-        assertThat(found.get().getFirstname())
-          .isEqualTo(user.getFirstname());*/
+    public void addNewIssue() {
+        User resultSet = USER_REPOSITORY.findByIdentity(20924544886L);
+        System.out.println("Credit Score = " + resultSet.getCreditscore());
     }
-    
-    
 }

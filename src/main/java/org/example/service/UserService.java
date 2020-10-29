@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.example.domain.User;
+import org.example.dto.UserDto;
 import org.example.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,9 +17,9 @@ public class UserService {
 	@Autowired
 	UserRepository userRepository;
 
-	/*public List<User> findAll() {
-		return USER_REPOSITORY.findAll();
-	}*/
+	public List<User> findAll() {
+		return userRepository.findAll();
+	}
 
 	/*@Transactional(isolation = Isolation.READ_COMMITTED)
 	public String creditCalculate(Long id){
@@ -38,23 +39,47 @@ public class UserService {
 	}*/
 
 	@Transactional(isolation = Isolation.READ_COMMITTED)
-	public String creditCalculate2(User user){
-
-		//User response = userRepository.findByIdentityAndIncome(user.getIdentity(), user.getIncome());
+	public User creditCalculate2(UserDto user){
 		User response = userRepository.findByIdentity(user.getIdentity());
-
 		if(response.getCreditscore() < 500){
 			response.setStatus(false);
-			return "Kredi alamaz.";
+			response.setName(user.getName());
+			response.setPhone(user.getPhone());
+			response.setIncome(user.getIncome());
+			response.setTotal(0L);
+			return response;
 		}
 		else if(response.getCreditscore()>= 500 && response.getCreditscore()<= 1000 && response.getIncome() < 5000){
-			return "Kredi alabilir : 10000TL";
+			response.setStatus(true);
+			response.setName(user.getName());
+			response.setPhone(user.getPhone());
+			response.setIncome(user.getIncome());
+			response.setTotal(10000L);
+			return response;
+		}else if(response.getCreditscore()>= 500 && response.getCreditscore()<= 1000 && response.getIncome() >= 5000){
+			response.setStatus(true);
+			response.setName(user.getName());
+			response.setPhone(user.getPhone());
+			response.setIncome(user.getIncome());
+			response.setTotal(response.getIncome() * 4);
+			return response;
+
 		}
-		else if(response.getCreditscore() >= 10000){
-			return "Kredi alabilir : " + response.getIncome()* 4 ;
+		else if(response.getCreditscore() >= 1000){
+			response.setStatus(true);
+			response.setName(user.getName());
+			response.setPhone(user.getPhone());
+			response.setIncome(user.getIncome());
+			response.setTotal(response.getIncome() * 4);
+			return response;
 		}
 		else{
-			return "Kredi alamaz.";
+			response.setStatus(false);
+			response.setName(user.getName());
+			response.setPhone(user.getPhone());
+			response.setIncome(user.getIncome());
+			response.setTotal(0L);
+			return response;
 		}
 	}
 

@@ -28,28 +28,26 @@ public class UserServiceIntegrationTest {
 
 	@MockBean
 	private UserRepository userRepository;
- 
+
 	@Before
 	public void initUserRepository() {
-		/*when(this.userRepository.findAll()).thenReturn(
-				Arrays.asList(	new User("Lucas", "Ko", Gender.M),
-								new User("Mark", "Dai", Gender.M),
-								new User("Dean", "Wei", Gender.M)
-				));*/
+		when(this.userRepository.findAll()).thenReturn(
+				Arrays.asList(	new User("Mehmet","05052566968",20825696584L,150L,1500L,0L,false)
+				));
 	}
 	
 	@Test
     public void findAllTest(){
-        /*List<User> users = userService.findAll();
+        List<User> users = userService.findAll();
       
         for(User user : users)
-        	System.out.printf("Firstname=%s, Lastname=%s \n" 
-        			, user.getFirstname() 
-        			, user.getLastname() 
+        	System.out.printf("Name=%s, CreditScore=%s \n"
+        			, user.getName()
+        			, user.getCreditscore()
         			 );
         
-        assertThat(users.get(1).getFirstname())
-        .isEqualTo("Mark");*/
+        assertThat(users.get(0).getName())
+        .isEqualTo("Mehmet");
         
     }
 }
